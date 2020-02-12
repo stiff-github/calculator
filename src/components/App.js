@@ -1,5 +1,5 @@
 import React, { Suspense, useState, useEffect } from "react";
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Spinner } from 'react-bootstrap';
 import '../styles/App.css';
 import TabsWithLoanLease from './TabsWithLoanLease/TabsWithLoanLease';
 import CardCars from './CardCars/CardCars';
@@ -11,6 +11,7 @@ function App(props) {
     setValue(val);
   }
   const [carsCard, setCarsCard] = useState({});
+  const [carsCardIsLoad, setCarsCardIsLoad] = useState(false);
   const [postal, setPostal] = useState('-');
   useEffect(() => {
     axios
@@ -27,11 +28,12 @@ function App(props) {
       )
       .then(({ data }) => {
         setCarsCard(data);
+        setCarsCardIsLoad(true);
       });
 
   }, []);
 
-    return (    
+    return carsCardIsLoad ? (    
       <Suspense fallback="loading">
         <Container>
           <Row>
@@ -40,6 +42,8 @@ function App(props) {
           </Row>
         </Container>
       </Suspense>
+    ) : (      
+      <Spinner animation="border" size="lg" />
     );
   }
 
