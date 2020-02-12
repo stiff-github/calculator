@@ -19,10 +19,10 @@ export default function TabswithLoanLease(props) {
   return (
     <Tabs defaultActiveKey="keyLoan" id="uncontrolled-tab-example" justify>
       <Tab eventKey="keyLoan" title={<span>Est. Loan:<br/><b>${value}</b>/mo</span>}>
-        <FormLoan priceMSRP={props.priceMSRP} handleChangeLoan={handleChangeLoan} />
+        <FormLoan priceMSRP={props.carsCard['msrp']} postal={props.postal} handleChangeLoan={handleChangeLoan} />
       </Tab>
       <Tab eventKey="keyLease" title={<span>Est. Lease:<br/><b>${value2}</b>/mo</span>}>
-        <FormLease priceMSRP={props.priceMSRP} handleChangeLease={handleChangeLease} />
+        <FormLease priceMSRP={props.carsCard['msrp']} handleChangeLease={handleChangeLease} />
       </Tab>
     </Tabs>
   );
