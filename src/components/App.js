@@ -24,7 +24,7 @@ function App(props) {
 
     axios
       .get(
-        "./public/card-cars.json"
+        "../../public/card-cars.json"
       )
       .then(({ data }) => {
         setCarsCard(data);
