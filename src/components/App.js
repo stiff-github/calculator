@@ -29,7 +29,7 @@ function App(props) {
 
     /*axios
       .get(
-        "../../public/card_cars.json"
+        "/public/card_cars.json"
       )
       .then(({ data }) => {
         setCarsCard(data);
