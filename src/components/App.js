@@ -15,8 +15,8 @@ function App(props) {
   const dealerUrl="www.volvo-center13.by"
   const dealerPhone="+375 99 999 99 99"
   const dealerReviews="78"
-  /*const [carsCard, setCarsCard] = useState({});
-  const [carsCardIsLoad, setCarsCardIsLoad] = useState(false);*/
+  const [carsCard, setCarsCard] = useState({});
+  const [carsCardIsLoad, setCarsCardIsLoad] = useState(false);
   const [postal, setPostal] = useState('-');
   useEffect(() => {
     axios
@@ -27,26 +27,28 @@ function App(props) {
         setPostal(data.postal);
       });
 
-    /*axios
+    axios
       .get(
-        "../../public/card_cars.json"
+        "/public/card_cars.json"
       )
       .then(({ data }) => {
         setCarsCard(data);
         setCarsCardIsLoad(true);
-      });*/
+      });
 
   }, []);
 
-    return (
-    <Suspense fallback="loading">
-      <Container>
-        <Row>
-          <Col sm={8}><TabsWithLoanLease priceMSRP={priceMSRP} handleChangeTab={handleChangeTab} postal={postal} /></Col>
-          <Col sm={4}><CardCars priceMSRP={priceMSRP} valLoan={value} dealerName={dealerName} dealerUrl={dealerUrl} dealerPhone={dealerPhone} dealerReviews={dealerReviews} /></Col>
-        </Row>
-      </Container>
-    </Suspense>
+    return carsCardIsLoad ? (    
+      <Suspense fallback="loading">
+        <Container>
+          <Row>
+            <Col sm={8}><TabsWithLoanLease carsCard={carsCard} handleChangeTab={handleChangeTab} postal={postal} /></Col>
+            <Col sm={4}><CardCars valLoan={value} carsCard={carsCard} /></Col>
+          </Row>
+        </Container>
+      </Suspense>
+    ) : (      
+      <Spinner animation="border" size="lg" />
     );
   }
 
