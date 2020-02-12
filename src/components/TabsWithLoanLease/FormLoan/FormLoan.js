@@ -16,7 +16,6 @@ export default function FormLoan(props) {
   const [tradeIn, setTradeIn] = useState("0");
   const [dawnPayment, setDawnPayment] = useState("0");
   const [apr, setApr] = useState("0");
-  const [zip, setZip] = useState("-");
 
   function runLoan () {
     /*console.log(props.priceMSRP);
@@ -125,7 +124,7 @@ export default function FormLoan(props) {
             <Form.Label>For ZIP Code</Form.Label>
           </Col>
           <Col xs="2" className="justify-content-end">
-            <FormControl value={zip} readOnly />
+            <FormControl value={props.postal} readOnly />
           </Col>
         </Form.Row>
       </Form>
